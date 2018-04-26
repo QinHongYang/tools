@@ -11,3 +11,4 @@
 | `regTips` | ` regTips.verify('mobile', '17688888888')` | `type, value` | - | 正则判断 |
 | `configENV` | ` configENV (config)` | `Object` | - | 判断当前 `url` 所用变量 |
 | `Timejs` | ` Timejs (date).format()` | - | `new Date()&YYYY-MM-DD HH:mm:ss` | 日期格式化 |
+| `throttle` | ` let fnThro = throttle(fun, delay)` | - | - | 节流函数 |
