@@ -1,6 +1,14 @@
+/*
+ * @Author: gauseen 
+ * @Date: 2018-04-27 11:22:14 
+ * @Last Modified by: gauseen
+ * @Last Modified time: 2018-04-27 11:29:41
+ */
 
-// 获取数据具体类型
-// 举个栗子: 'string', 'object', 'number', 'null', 'undefined', 'function'
+/*
+* 获取数据具体类型
+* 举个栗子: 'string', 'object', 'number', 'null', 'undefined', 'function'
+*/
 export function getType (value) {
 	var typer = Object.prototype.toString
 	var typeStr = typer.call(value)
@@ -34,11 +42,11 @@ export function isEmpty (value) {
 }
 */
 
-/* 
-加载页面先调用 const actionForbid = forbidBodyScroll ()
-弹出层显示和关闭时 actionForbid(isShow)
+/*
+* 加载页面先调用 const actionForbid = forbidBodyScroll ()
+* 弹出层显示和关闭时 actionForbid(isShow)
 
-isShow: Boolean
+* isShow: Boolean
 */
 
 // 禁止body滚动，解决弹出蒙层滑动穿透问题
@@ -69,8 +77,10 @@ export function setTitle (title) {
 	document.body.appendChild(iframe)
 }
 
-// 解析链接中的数据
-// 举个栗子 http://example/api?name=hello&msg=world => { name: 'hello', msg: 'world' }
+/*
+* 解析链接中的数据
+* 举个栗子 http://example/api?name=hello&msg=world => { name: 'hello', msg: 'world' }
+*/
 export function parseUrl (url) {
 	url = url || window.location.href
 
@@ -91,8 +101,10 @@ export function parseUrl (url) {
 }
 
 
-// 对象转 form 数据
-// 举个栗子 { name: 'hello', msg: 'world' } => name=hello&msg=world
+/*
+* 对象转 form 数据
+* 举个栗子 { name: 'hello', msg: 'world' } => name=hello&msg=world
+*/
 export function obj2Params (data) {
 	var dataType = getType(data)
 
@@ -130,19 +142,17 @@ export function resolveObj (obj, parents) {
 }
 
 // 正则
-
 /*
-正常使用:
-regTips.verify('mobile', '17688888888') // true
+* 正常使用:
+* regTips.verify('mobile', '17688888888') // true
 
-扩展正则:
-链式调用:
-regTips.extend('addReg', /abcd/).verify('addReg', 'abcd')
+* 扩展正则:
+* 链式调用:
+* regTips.extend('addReg', /abcd/).verify('addReg', 'abcd')
 
-非链式调用
-regTips.extend('addReg', /abcd/)
-regTips.verify('addReg', 'abcd') // true
-
+* 非链式调用
+* regTips.extend('addReg', /abcd/)
+* regTips.verify('addReg', 'abcd') // true
 */
 export const regTips = {
 	// 正则
@@ -185,7 +195,7 @@ export const regTips = {
 
 // 根据各个环境配置不同变量；sit、uat测试环境；it生产环境，无匹配项时为: location
 /*
-调用方式:
+* 调用方式:
 
 const config = {
 	it_cn: prodUrlCN,
@@ -199,8 +209,8 @@ const config = {
 	lang: 'cn',
 }
 
-// 当前环境所用变量
-let url = configENV(config)
+* 当前环境所用变量
+* let url = configENV(config)
 */
 
 export function configENV (config = {lang: 'cn'}) {
@@ -210,18 +220,18 @@ export function configENV (config = {lang: 'cn'}) {
 }
 
 /*日期格式化，举个栗子：
-YY-MM-DD ==> 18-01-05
-YYYY-MM-DD ==> 2018-01-05
-YYYY-MM-DD HH:mm ==> 2018-01-05 15:30
-YYYY-MM-DD HH:mm:ss ==> 2018-01-05 15:30:11
-YYYY-M-D H:m:s ==> 2018-1-5 8:8:8
+* YY-MM-DD ==> 18-01-05
+* YYYY-MM-DD ==> 2018-01-05
+* YYYY-MM-DD HH:mm ==> 2018-01-05 15:30
+* YYYY-MM-DD HH:mm:ss ==> 2018-01-05 15:30:11
+* YYYY-M-D H:m:s ==> 2018-1-5 8:8:8
 */
 
 /*
-default format: YYYY-MM-DD HH:mm:ss
-e.g.
-let result = Timejs().format('YYYY-M-D H:m:s')
-console.log(result)
+* default format: YYYY-MM-DD HH:mm:ss
+* e.g.
+* let result = Timejs().format('YYYY-M-D H:m:s')
+* console.log(result)
 */
 
 
@@ -314,9 +324,9 @@ export function Timejs (date) {
 
 // 节流函数
 /*
-let fnThrottle = throttle(fun, delay)
-e.g.
-document.addEventListener('scroll', fnThrottle)
+* let fnThrottle = throttle(fun, delay)
+* e.g.
+* document.addEventListener('scroll', fnThrottle)
 */
 
 export function throttle (fn, delay = 150) {
