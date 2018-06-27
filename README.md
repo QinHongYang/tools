@@ -11,5 +11,6 @@
 | `regTips` | ` regTips.verify('mobile', '17688888888')` | `type, value` | - | 正则判断 |
 | `configENV` | ` configENV (config)` | `Object` | - | 判断当前 `url` 所用变量 |
 | `Timejs` | ` Timejs (date).format()` | - | `new Date()&YYYY-MM-DD HH:mm:ss` | 日期格式化 |
-| `throttle` | ` let fnThro = throttle(fun, delay)` | - | - | 节流函数 |
+| `throttle` | ` let fnThro = throttle(fun, delay)` | - | - | 节流函数(初始执行一次，一定时间内必定执行一次) |
+| `debounce` | ` let fnDebo = debounce(fun, delay)` | - | - | 防抖函数(一定时间内不再次调用，执行一次) |
 | `mergerOfSimilarItems` | ` mergerOfSimilarItems (arr, standardProps, mergeProps)` | - | - | 合并同类项 |

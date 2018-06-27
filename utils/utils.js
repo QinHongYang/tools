@@ -2,7 +2,7 @@
  * @Author: gauseen 
  * @Date: 2018-04-27 11:22:14 
  * @Last Modified by: gauseen
- * @Last Modified time: 2018-06-08 10:52:24
+ * @Last Modified time: 2018-06-27 11:37:59
  */
 
 /*
@@ -323,6 +323,11 @@ export function Timejs (date) {
 }
 
 // 节流函数
+/**
+ * fn 需要节流的函数 Function
+ * delay 设置节流的时间间隔（单位：毫秒） Date
+ * 返回一个节流函数，可被事件调用
+ **/
 /*
 * let fnThrottle = throttle(fun, delay)
 * e.g.
@@ -360,6 +365,29 @@ export function throttle (fn, delay = 150) {
 		} else {
 			execute()
 		}
+	}
+}
+
+// 防抖函数
+/**
+ * fn 需要防抖的函数 Function
+ * delay 设置防抖的时间间隔（单位：毫秒） Date
+ * 返回一个防抖函数，可被事件调用
+ **/
+function debounce (fn, delay) {
+	let timer
+	if(delay === undefined) {
+		delay = 150
+	}
+	return function () {
+		let self = this, args = arguments
+		if (timer) {
+			clearTimeout(timer)
+			timer = null
+		}
+		timer = setTimeout(function() {
+			fn.apply(self, args)
+		}, delay)
 	}
 }
 
