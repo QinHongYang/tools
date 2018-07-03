@@ -1,14 +1,16 @@
-/*
+/**
  * @Author: gauseen 
  * @Date: 2018-04-27 11:22:14 
  * @Last Modified by: gauseen
- * @Last Modified time: 2018-06-27 11:37:59
+ * @Last Modified time: 2018-07-03 14:34:22
  */
 
-/*
-* 获取数据具体类型
-* 举个栗子: 'string', 'object', 'number', 'null', 'undefined', 'function'
-*/
+/**
+ * 获取数据具体类型
+ * 
+ * @param  {Any} value 要判断的数据
+ * @return {String} 返回数据类型 'string', 'object', 'number', 'null', 'undefined', 'function'
+ */
 export function getType (value) {
 	var typer = Object.prototype.toString
 	var typeStr = typer.call(value)
@@ -17,7 +19,14 @@ export function getType (value) {
 	return typeStr.toLowerCase()
 }
 
-// 判断所有数据类型是否为空
+/**
+ * 判断所有数据类型是否为空
+ * 
+ * @param  {Any} value 要判断的数据
+ * @return {Boolean} 布尔值
+ * 
+ * 注：该方法依赖了 getType 方法
+ */
 export function isEmpty (value) {
 	const type = getType(value)
 
@@ -68,7 +77,11 @@ export function forbidBodyScroll () {
 	return actionForbid 
 }
 
-// 设置页面 title，单页面应用，兼容 title 问题
+/**
+ * 设置页面 title，单页面应用，兼容 title 问题
+ * 
+ * @param  {String} title 要设置的 title
+ */
 export function setTitle (title) {
 	document.title = title
 	var iframe = document.createElement('iframe')
@@ -77,10 +90,15 @@ export function setTitle (title) {
 	document.body.appendChild(iframe)
 }
 
-/*
-* 解析链接中的数据
-* 举个栗子 http://example/api?name=hello&msg=world => { name: 'hello', msg: 'world' }
-*/
+/**
+ * 解析链接中的数据
+ * 
+ * @param  {String | Null} url 需要解析的 url
+ * @return {Object} 返回解析后的对象
+ * 
+ * e.g.
+ * http://example.cn/api?name=hello&msg=world => { name: 'hello', msg: 'world' }
+ */
 export function parseUrl (url) {
 	url = url || window.location.href
 
@@ -100,11 +118,15 @@ export function parseUrl (url) {
 	}
 }
 
-
-/*
-* 对象转 form 数据
-* 举个栗子 { name: 'hello', msg: 'world' } => name=hello&msg=world
-*/
+/**
+ * 对象转 form 数据
+ * 
+ * @param  {Object} data 要转换的对象
+ * @return {String} 序列化后的字符串
+ * 
+ * e.g.
+ * { name: 'hello', msg: 'world' } ==> name=hello&msg=world
+ */
 export function obj2Params (data) {
 	var dataType = getType(data)
 
@@ -219,28 +241,30 @@ export function configENV (config = {lang: 'cn'}) {
 	return config[key]
 }
 
-/*日期格式化，举个栗子：
-* YY-MM-DD ==> 18-01-05
-* YYYY-MM-DD ==> 2018-01-05
-* YYYY-MM-DD HH:mm ==> 2018-01-05 15:30
-* YYYY-MM-DD HH:mm:ss ==> 2018-01-05 15:30:11
-* YYYY-M-D H:m:s ==> 2018-1-5 8:8:8
-*/
+/**
+ * 日期格式化
+ * 
+ * @param {Date | Null} date 要格式化的日期
+ * 
+ * @param {Pattern} 格式化类型支持：
+ * YY-MM-DD ==> 18-01-05
+ * YYYY-MM-DD ==> 2018-01-05
+ * YYYY-MM-DD HH:mm ==> 2018-01-05 15:30
+ * YYYY-MM-DD HH:mm:ss ==> 2018-01-05 15:30:11 (默认类型)
+ * YYYY-M-D H:m:s ==> 2018-1-5 8:8:8
+ * 
+ * @return {Date} 格式化后的日期
+ * 
+ * e.g.
+ * let f = Timejs().format(Pattern)
+ */
 
-/*
-* default format: YYYY-MM-DD HH:mm:ss
-* e.g.
-* let result = Timejs().format('YYYY-M-D H:m:s')
-* console.log(result)
-*/
-
-
-function TimeTips (date) {
+function FormatTime (date) {
 	this.$d = this.parseConfig(date)
 	this.init()
 }
 
-TimeTips.prototype = {
+FormatTime.prototype = {
 	parseConfig: function (config) {
 		let reg
 		if (!config) return new Date()
@@ -319,21 +343,20 @@ TimeTips.prototype = {
 }
 
 export function Timejs (date) {
-	return new TimeTips(date)
+	return new FormatTime(date)
 }
 
-// 节流函数
 /**
- * fn 需要节流的函数 Function
- * delay 设置节流的时间间隔（单位：毫秒） Date
- * 返回一个节流函数，可被事件调用
- **/
-/*
-* let fnThrottle = throttle(fun, delay)
-* e.g.
-* document.addEventListener('scroll', fnThrottle)
-*/
-
+ * 节流函数
+ * 
+ * @param  {Function} fn 需要节流的函数
+ * @param  {Number} delay=150 设置节流的时间间隔（单位：毫秒）
+ * @return {Function} 返回一个节流函数，可被事件调用
+ * 
+ * e.g.
+ * let fnThrottle = throttle(fun, delay)
+ * document.addEventListener('scroll', fnThrottle)
+ */
 export function throttle (fn, delay = 150) {
 	let now, lastExec, timer, context, args
 
@@ -368,12 +391,13 @@ export function throttle (fn, delay = 150) {
 	}
 }
 
-// 防抖函数
 /**
- * fn 需要防抖的函数 Function
- * delay 设置防抖的时间间隔（单位：毫秒） Date
- * 返回一个防抖函数，可被事件调用
- **/
+ * 防抖函数
+ * 
+ * @param  {Function} fn 需要防抖的函数
+ * @param  {Number} delay 设置防抖的时间间隔（单位：毫秒）
+ * @return {Function} 返回一个防抖函数，可被事件调用
+ */
 function debounce (fn, delay) {
 	let timer
 	if(delay === undefined) {
@@ -391,12 +415,14 @@ function debounce (fn, delay) {
 	}
 }
 
-// 合并同类项
 /**
- * arr 需要合并的数据源 Array<object>
- * standardProps 合并时参照的属性 Array<string>
- * mergeProps 需要相加的属性 Array<string>
- **/
+ * 合并同类项
+ * 
+ * @param  {Array} arr 需要合并的数据源
+ * @param  {String} standardProps 合并时参照的属性
+ * @param  {String} mergeProps 需要相加的属性
+ * @return {Array}
+ */
 function mergerOfSimilarItems (arr, standardProps, mergeProps) {
 	if (!(arr && standardProps && mergeProps)) return;
 
