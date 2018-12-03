@@ -2,7 +2,7 @@
 
 | 方法名 | 调用 | 参数类型 | 默认参数 | 说明 |
 |-------|-------|---------|-------|-------|
-| `getType` | `getType(value)` | `any` | - | 获取数据具体类型 |
+| `typer` | `typer(value)` | `any` | - | 获取数据具体类型 |
 | `isEmpty` | `isEmpty(value)` | `any` | - | 判断所有数据类型是否为空 |
 | `forbidBodyScroll` | `forbidBodyScroll().actionForbid(isShowMask)` | `Boolean` | - | 禁止body滚动，解决弹出蒙层滑动穿透问题 |
 | `setTitle` | `setTitle(title)` | `String` | - | 设置页面 title，单页面应用，兼容 title 问题 |
