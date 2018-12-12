@@ -1,0 +1,19 @@
+{
+  "name": "@gauseen/tools",
+  "version": "0.0.1",
+  "description": "js 常用方法工具库",
+  "main": "./src/index.js",
+  "repository": "git@github.com:gauseen/tools.git",
+  "author": "gauseen <gauseen@163.com>",
+  "keywords": [
+    "javascript",
+    "js",
+    "utils",
+    "tools"
+  ],
+  "bugs": {
+    "url": "https://github.com/gauseen/tools/issues"
+  },
+  "homepage": "https://github.com/gauseen/tools#readme",
+  "license": "MIT"
+}
