@@ -8,6 +8,7 @@ yarn add @gauseen/tools
 ### 使用
 ```js
 import { typer } from '@gauseen/tools'
+
 typer(66)  // number
 ```
 
@@ -15,7 +16,9 @@ typer(66)  // number
 ```js
 <script src="https://unpkg.com/@gauseen/tools"></script>
 
-window.tools.typer(66)  // number
+<script>
+  window.tools.typer(66)  // number
+</script>
 ```
 
 | 方法名 | 调用 | 参数类型 | 默认参数 | 说明 |
