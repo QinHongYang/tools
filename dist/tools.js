@@ -1,5 +1,5 @@
 /**
- * tools v0.0.1
+ * tools v0.0.2
  * https://github.com/gauseen/tools
  * 
  * Copyright (c) 2018 gauseen

@@ -5,7 +5,8 @@
   "main": "./dist/tools.js",
   "scripts": {
     "dev": "rollup -c -w",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "test": "jest"
   },
   "repository": "git@github.com:gauseen/tools.git",
   "author": "gauseen <gauseen@163.com>",
@@ -23,6 +24,10 @@
   "devDependencies": {
     "@babel/core": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "jest": "^23.6.0",
+    "regenerator-runtime": "^0.13.1",
     "rollup": "^0.67.4",
     "rollup-plugin-babel": "^4.1.0",
     "rollup-plugin-commonjs": "^9.2.0",
