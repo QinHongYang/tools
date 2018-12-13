@@ -1,5 +1,23 @@
 ### js 常用工具方法
 
+### 安装
+```sh
+yarn add @gauseen/tools
+```
+
+### 使用
+```js
+import { typer } from '@gauseen/tools'
+typer(66)  // number
+```
+
+### 脚本引入
+```js
+<script src="https://unpkg.com/@gauseen/tools"></script>
+
+window.tools.typer(66)  // number
+```
+
 | 方法名 | 调用 | 参数类型 | 默认参数 | 说明 |
 |-------|-------|---------|-------|-------|
 | `typer` | `typer(value)` | `any` | - | 获取数据具体类型 |

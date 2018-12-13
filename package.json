@@ -1,8 +1,12 @@
 {
   "name": "@gauseen/tools",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "js 常用方法工具库",
-  "main": "./src/index.js",
+  "main": "./dist/tools.js",
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "rollup -c"
+  },
   "repository": "git@github.com:gauseen/tools.git",
   "author": "gauseen <gauseen@163.com>",
   "keywords": [
@@ -15,5 +19,14 @@
     "url": "https://github.com/gauseen/tools/issues"
   },
   "homepage": "https://github.com/gauseen/tools#readme",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "rollup": "^0.67.4",
+    "rollup-plugin-babel": "^4.1.0",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-uglify": "^6.0.0"
+  }
 }
