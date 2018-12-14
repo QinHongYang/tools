@@ -24,7 +24,8 @@ export default function storage (type = 'localStorage') {
 				} catch (e) {
 					return value
 				}
-			} else return null
+			}
+			return null
 		},
 		set (key, value) {
 			if (value && typer(value) === 'object') {

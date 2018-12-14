@@ -1,6 +1,7 @@
 /**
  * 节流函数
- *
+ *（第一次立即执行，delay 时间内必须执行一次）
+ * 
  * @param  {Function} fn 需要节流的函数
  * @param  {Number} delay=150 设置节流的时间间隔（单位：毫秒）
  * @return {Function} 返回一个节流函数，可被事件调用
@@ -30,6 +31,7 @@ export default function throttle (fn, delay = 150) {
 
 		if (lastExec) {
 			let diff = delay - (now - lastExec)
+			// console.log('diff: ', diff)
 			if (diff < 0) {
 				execute()
 			} else {

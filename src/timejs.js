@@ -15,7 +15,7 @@
  * @return {Date} 格式化后的日期
  *
  * e.g.
- * let f = Timejs().format(Pattern, lang)
+ * let f = timejs().format(Pattern, lang)
  */
 
 function FormatTime (date) {
