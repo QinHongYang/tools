@@ -3,6 +3,7 @@
 .travis.yml
 
 # dev
+coverage/
 src/
 __mocks__
 test/
