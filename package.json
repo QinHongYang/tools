@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "rollup -c -w",
     "build": "rollup -c",
-    "lint": "eslint src/**/*.js",
+    "lint": "eslint {src,test}/**/*.{js,jsx} --color",
     "test": "jest"
   },
   "husky": {

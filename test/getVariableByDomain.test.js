@@ -8,7 +8,6 @@ const changeDomain = (domain) => {
 }
 
 test('通过域名获取对应变量', () => {
-
 	changeDomain('one.example.com')
 
 	const optionsA = {
@@ -29,5 +28,4 @@ test('通过域名获取对应变量', () => {
 	}
 
 	expect(getVariableByDomain(optionsB)).toBe('this is two domain cn')
-
 })

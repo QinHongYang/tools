@@ -24,4 +24,9 @@ module.exports = {
 		],
 		'no-tabs': [0],
 	},
+	globals: {
+		jest: false,
+		test: false,
+		expect: false,
+	},
 }

@@ -16,11 +16,11 @@ test('禁止频繁操作，但第一次立即执行', () => {
 	expect(mockFn).toHaveBeenCalled()
 	expect(mockFn).toHaveBeenCalledTimes(1)
 
-	fastForward(50)  // 第 50 ms
+	fastForward(50) // 第 50 ms
 	run()
 	expect(mockFn).toHaveBeenCalledTimes(1)
 
-	fastForward(101)  // 第 101 ms
+	fastForward(101) // 第 101 ms
 	run()
 	expect(mockFn).toHaveBeenCalledTimes(2)
 

@@ -1,7 +1,6 @@
 import { isEmpty } from '../src/index'
 
 test('is empty', () => {
-
 	expect(isEmpty(null)).toBe(true)
 	expect(isEmpty(undefined)).toBe(true)
 	expect(isEmpty('')).toBe(true)

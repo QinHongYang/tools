@@ -7,7 +7,7 @@ test('deep copy', () => {
 		hobby: {
 			pingpang: 100,
 			badminton: 99,
-		}, 
+		},
 	}
 
 	expect(deepCopy(personA)).toEqual(personA)
