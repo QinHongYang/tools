@@ -1,14 +1,14 @@
-.babelrc.js
-.gitignore
-.travis.yml
+# .babelrc.js
+# .gitignore
+# .travis.yml
 
-# dev
-coverage/
-src/
-__mocks__
-test/
-rollup.config.js
+# # dev
+# coverage/
+# src/
+# __mocks__
+# test/
+# rollup.config.js
 
-# other
-index.html
-yarn.lock
+# # other
+# index.html
+# yarn.lock
