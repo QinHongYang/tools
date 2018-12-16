@@ -1,5 +1,7 @@
 ### js 常用工具方法
 
+[![Build Status](https://travis-ci.org/gauseen/tools.svg?branch=prod)](https://travis-ci.org/gauseen/tools)
+
 ### 安装
 ```sh
 yarn add @gauseen/tools
