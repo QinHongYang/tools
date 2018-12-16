@@ -1,0 +1,13 @@
+.babelrc.js
+.gitignore
+.travis.yml
+
+# dev
+src/
+__mocks__
+test/
+rollup.config.js
+
+# other
+index.html
+yarn.lock
