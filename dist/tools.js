@@ -1,5 +1,5 @@
 /**
- * tools v0.0.2
+ * tools v0.0.3
  * https://github.com/gauseen/tools
  * 
  * Copyright (c) 2018 gauseen
@@ -14,18 +14,15 @@
 
 	/**
 	 * 防抖函数
+	 * （停止连续操作 delay ms 之后，只执行一次）
 	 *
 	 * @param  {Function} fn 需要防抖的函数
 	 * @param  {Number} delay 设置防抖的时间间隔（单位：毫秒）
 	 * @return {Function} 返回一个防抖函数，可被事件调用
 	 */
-	function debounce(fn, delay) {
+	function debounce(fn) {
+	  var delay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 150;
 	  var timer;
-
-	  if (delay === undefined) {
-	    delay = 150;
-	  }
-
 	  return function () {
 	    var self = this;
 	    var args = arguments;
@@ -191,7 +188,7 @@
 	 * @return {Date} 格式化后的日期
 	 *
 	 * e.g.
-	 * let f = Timejs().format(Pattern, lang)
+	 * let f = timejs().format(Pattern, lang)
 	 */
 	function FormatTime(date) {
 	  this.$d = this.parseConfig(date);
@@ -306,7 +303,7 @@
 	  }();
 	}
 
-	// 获取html的字体大小
+	// 获取 html 的字体大小
 	function getFontSize() {
 	  var htmlDOM = document.querySelector('html');
 	  var htmlFontSize = window.getComputedStyle(htmlDOM).fontSize;
@@ -360,35 +357,22 @@
 	/**
 	 * 判断所有数据类型是否为空
 	 *
-	 * @param  {Any} value 要判断的数据
+	 * @param  {Any} val 要判断的数据
 	 * @return {Boolean} 布尔值
 	 *
-	 * 注：该方法依赖了 typer 方法
+	 * 注：数字、布尔值 被视为"空"
+	 *
 	 */
-	function isEmpty(value) {
-	  var type = typer(value);
-
-	  switch (type) {
-	    case 'object':
-	      return Object.keys(value).length === 0;
-
-	    case 'array':
-	      return value.length === 0;
-
-	    case 'number':
-	      return !isNaN(value);
-
-	    default:
-	      return !!value;
-	  }
-	}
+	var isEmpty = function isEmpty(val) {
+	  return val == null || !(Object.keys(val) || val).length;
+	};
 
 	/**
 	 * 合并同类项
 	 *
 	 * @param  {Array} arr 需要合并的数据源
-	 * @param  {String} standardProps 合并时参照的属性
-	 * @param  {String} mergeProps 需要相加的属性
+	 * @param  {Array} standardProps 合并时参照的属性
+	 * @param  {Array} mergeProps 需要相加的属性
 	 * @return {Array}
 	 */
 	function mergerOfSimilarItems(arr, standardProps, mergeProps) {
@@ -524,7 +508,7 @@
 	    password: /^(?![\\d]+$)(?![a-zA-Z]+$)(?![^\\da-zA-Z]+$).{8,16}$/,
 	    // 邮箱 或 'noemail' 字段
 	    email: /(^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$)|(^noemail$)/,
-	    // 保留 2 位小数
+	    // 保留 1 或 2 位小数
 	    save2BitPoint: /^[0-9]+(\.\d{1,2})?$/
 	  },
 	  // 验证
@@ -586,7 +570,9 @@
 	        } catch (e) {
 	          return value;
 	        }
-	      } else return null;
+	      }
+
+	      return null;
 	    },
 	    set: function set(key, value) {
 	      if (value && typer(value) === 'object') {
@@ -608,18 +594,14 @@
 	 * 禁止频繁操作函数
 	 * （delay毫秒内只执行一次，第一次立即执行）
 	 *
-	 * @param  {Function} exec 待执行函数
+	 * @param  {Function} fn 待执行函数
 	 * @param  {Number} delay=150ms 执行阀值时间（单位：毫秒）
 	 * @return {Function} 返回一个函数，可被事件调用
 	 */
-	function threshold(exec, delay) {
-	  if (!exec) return;
+	function threshold(fn) {
+	  var delay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 150;
+	  if (!fn) return;
 	  var lastExec = null;
-
-	  if (delay === undefined) {
-	    delay = 150;
-	  }
-
 	  return function () {
 	    var now = +new Date();
 	    var isExec = now - lastExec >= delay;
@@ -629,7 +611,7 @@
 
 	    if (!lastExec || isExec) {
 	      // 防止上下文 this，参数 arguments 丢失
-	      exec.apply(_context, args);
+	      fn.apply(_context, args);
 	      lastExec = +new Date();
 	    }
 	  };
@@ -637,6 +619,7 @@
 
 	/**
 	 * 节流函数
+	 *（第一次立即执行，delay 时间内必须执行一次）
 	 *
 	 * @param  {Function} fn 需要节流的函数
 	 * @param  {Number} delay=150 设置节流的时间间隔（单位：毫秒）
@@ -666,7 +649,7 @@
 	    }
 
 	    if (lastExec) {
-	      var diff = delay - (now - lastExec);
+	      var diff = delay - (now - lastExec); // console.log('diff: ', diff)
 
 	      if (diff < 0) {
 	        execute();
@@ -682,22 +665,12 @@
 	}
 
 	/*
-	 * 判断浏览器是否为移动端
+	 * 判断浏览器客户端是否为移动端
 	 * @param   {boolean}   true为移动端
 	*/
-	function isMobile() {
-	  var userAgentInfo = navigator.userAgent;
-
-	  if (!!userAgentInfo.match(/AppleWebKit.*Mobile.*/) || !!userAgentInfo.match(/AppleWebKit/)) {
-	    var temp = userAgentInfo.toLowerCase();
-
-	    if (temp.indexOf('android') > -1 || temp.indexOf('iphone') > -1 || temp.indexOf('ipad') > -1 || temp.indexOf('windows phone') > -1 || temp.indexOf('blackberry') > -1 || temp.indexOf('hp-tablet') > -1 || temp.indexOf('symbian') > -1 || temp.indexOf('phone') > -1) {
-	      return true;
-	    }
-	  }
-
-	  return false;
-	}
+	var isMobile = function isMobile() {
+	  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+	};
 
 	/**
 	 * 获取视口宽、高
@@ -715,10 +688,10 @@
 	}
 
 	/**
-	 * @Author: gauseen 
-	 * @Date: 2018-04-27 11:22:14 
+	 * @Author: gauseen
+	 * @Date: 2018-04-27 11:22:14
 	 * @Last Modified by: gauseen
-	 * @Last Modified time: 2018-12-12 18:16:42
+	 * @Last Modified time: 2018-12-16 16:29:57
 	 */
 
 	exports.debounce = debounce;

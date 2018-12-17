@@ -4,8 +4,8 @@ import babel from 'rollup-plugin-babel'
 import { uglify } from 'rollup-plugin-uglify'
 import pkg from './package.json'
 
-// `npm run dev` -> `production` is false
-const production = !process.env.ROLLUP_WATCH
+// 是否需要压缩
+const is_compress = process.env.IS_COMPRESS
 
 // 开源说明
 let banner = `\
@@ -22,7 +22,7 @@ export default {
 	input: './src/index.js',
 	output: {
 		name: 'tools',
-		file: './dist/tools.js',
+		// file: './dist/tools.js',
 		format: 'umd',
 		banner,
 	},
@@ -30,6 +30,6 @@ export default {
 		resolve(),
 		commonjs(),
 		babel(),
-		// production && uglify(),
+		is_compress && uglify(),
 	],
 }

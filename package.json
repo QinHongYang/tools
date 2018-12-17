@@ -3,9 +3,12 @@
   "version": "0.0.3",
   "description": "js 常用方法工具库",
   "main": "./dist/tools.js",
+  "unpkg": "./dist/tools.min.js",
   "scripts": {
     "dev": "rollup -c -w",
-    "build": "rollup -c",
+    "build": "npm run build:compress & npm run build:uncompress",
+    "build:uncompress": "rollup -c --file=dist/tools.js",
+    "build:compress": "rollup -c --file=dist/tools.min.js --environment IS_COMPRESS",
     "lint": "eslint {src,test}/**/*.{js,jsx} --color",
     "test": "jest"
   },
