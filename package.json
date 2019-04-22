@@ -1,6 +1,6 @@
 {
   "name": "@gauseen/tools",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "js 常用方法工具库",
   "main": "./dist/tools.js",
   "unpkg": "./dist/tools.min.js",

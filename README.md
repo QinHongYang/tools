@@ -33,7 +33,7 @@ typer(66)  // number
 | `obj2Params` | ` obj2Params (obj)` | `Object or null` | - | 对象转 form 数据 `{ name: 'hello', msg: 'world' } => name=hello&msg=world` |
 | `regTips` | ` regTips.verify('mobile', '17688888888')` | `type, value` | - | 正则判断 |
 | `getVariableByDomain` | ` getVariableByDomain(options)` | `Object` | - | 根据不同域名，获取不同变量 |
-| `Timejs` | ` Timejs (date).format()` | - | `new Date()&YYYY-MM-DD HH:mm:ss` | 日期格式化 |
+| `Timejs` | ` Timejs(date).format()` | - | `new Date()&YYYY-MM-DD HH:mm:ss` | 日期格式化 |
 | `throttle` | ` let fnThro = throttle(fun, delay)` | - | - | 节流函数(初始执行一次，一定时间内必定执行一次) |
 | `debounce` | ` let fnDebo = debounce(fun, delay)` | - | - | 防抖函数(一定时间内不再次调用，执行一次) |
 | `threshold` | ` let fnThre = threshold(fun, delay)` | - | - | 禁止频繁操作函数(第一次立即执行，delay 毫秒之后执行一次) |

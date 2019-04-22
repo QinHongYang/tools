@@ -14,8 +14,8 @@ export default function throttle (fn, delay = 150) {
 	let now, lastExec, timer, context, args
 
 	let execute = function () {
-		fn.apply(context, args)
 		lastExec = now
+		return fn.apply(context, args)
 	}
 
 	return function () {
@@ -33,14 +33,14 @@ export default function throttle (fn, delay = 150) {
 			let diff = delay - (now - lastExec)
 			// console.log('diff: ', diff)
 			if (diff < 0) {
-				execute()
+				return execute()
 			} else {
 				timer = setTimeout(() => {
-					execute()
+					return execute()
 				}, diff)
 			}
 		} else {
-			execute()
+			return execute()
 		}
 	}
 }
