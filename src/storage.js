@@ -28,7 +28,8 @@ export default function storage (type = 'localStorage') {
 			return null
 		},
 		set (key, value) {
-			if (value && typer(value) === 'object') {
+			let type = typer(value)
+			if (value && (type === 'object' || type === 'array')) {
 				value = JSON.stringify(value)
 			}
 			window[storageType].setItem(key, value)
