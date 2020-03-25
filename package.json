@@ -1,0 +1,52 @@
+{
+  "name": "@gauseen/tools",
+  "version": "0.0.5",
+  "description": "js 常用方法工具库",
+  "main": "dist/tools.cjs.js",
+  "module": "dist/tools.esm.js",
+  "browser": "dist/tools.umd.js",
+  "unpkg": "./dist/tools.min.js",
+  "types": "./types/index.d.ts",
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "npm run build:compress",
+    "build:uncompress": "rollup -c --file=dist/tools.js",
+    "build:compress": "rollup -c --file=dist/tools.min.js --environment IS_COMPRESS",
+    "lint": "eslint {src,test}/**/*.{js,ts,tsx,jsx} --color",
+    "test": "jest --env=jsdom"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run test"
+    }
+  },
+  "repository": "git@github.com:gauseen/tools.git",
+  "author": "gauseen <gauseen@163.com>",
+  "keywords": [
+    "javascript",
+    "js",
+    "utils",
+    "tools"
+  ],
+  "bugs": {
+    "url": "https://github.com/gauseen/tools/issues"
+  },
+  "homepage": "https://github.com/gauseen/tools#readme",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.0.1",
+    "@rollup/plugin-typescript": "^2.1.0",
+    "@types/jest": "^24.9.0",
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
+    "eslint": "^6.8.0",
+    "husky": "^4.0.10",
+    "jest": "^24.9.0",
+    "mockdate": "^2.0.5",
+    "rollup": "^1.29.0",
+    "standard": "^14.3.1",
+    "ts-jest": "^24.3.0",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.5"
+  }
+}
